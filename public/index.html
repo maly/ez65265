@@ -139,6 +139,21 @@
 	   		<hr>
 	   	</div>
 
+	   	<h2>Run</h2>
+	   	<div class="row">
+	           <div class="input-group col-md-6">
+				  <span class="input-group-addon">Address</span>
+				  <input type="text" class="form-control" aria-describedby="basic-addon1" id="addr" maxlength=6>
+				</div>
+		        <div class="input-group col-md-3">
+				  <button onclick="jml()" class="btn">JML</button>
+				</div>	
+		        <div class="input-group col-md-3">
+				  <button onclick="jsl()" class="btn">JSL</button>
+				</div>	
+	   	</div>
+
+
 	   	<h2>Upload</h2>
 	   	<div class="row">
 	   		<input type="file" id="files" name="files[]" multiple />
@@ -198,6 +213,11 @@ var doconn = function(e) {
 var sety = function() {
 	console.log("SETY")
 	doSend("|Y0123R\r")
+}
+
+var jml = function() {
+	var addr = $("#addr").val()
+	doSend("G"+addr+"\r")
 }
 
 var chga = function() {
