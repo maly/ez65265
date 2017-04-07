@@ -38,6 +38,7 @@
     <div class="container">
      <div class="row">
       <div class="col-md-4 bg-faded invisible" id="side-panel"><!--panel-->
+      <h1>W65C265 State</h1>
       <div class="row">
         <div class="input-group col-md-6">
 		  <span class="input-group-addon">A</span>
@@ -138,7 +139,7 @@
       <div class="col">
         <h1>EZ65C265 Control Panel</h1>
         <p class="lead">Connect your 65xxcel8r and select proper port (reload if not shown)</p>
-        <button onclick="sety()">Set Y</button>
+        <h2>Serial monitor</h2>
         <textarea id="rawlog" class="form-control" rows="30" cols="40"></textarea>
         <p id="output"></p>
 
@@ -190,30 +191,30 @@ var sety = function() {
 }
 
 var chga = function() {
-	doSend("|A"+$("#rega").val()+"R\r")
+	doSend("|A"+$("#rega").val()+"\r")
 }
 var chgx = function() {
-	doSend("|X"+$("#regx").val()+"R\r")
+	doSend("|X"+$("#regx").val()+"\r")
 }
 var chgy = function() {
-	doSend("|Y"+$("#regy").val()+"R\r")
+	doSend("|Y"+$("#regy").val()+"\r")
 }
 var chgsp = function() {
-	doSend("|S"+$("#regsp").val()+"R\r")
+	doSend("|S"+$("#regsp").val()+"\r")
 }
 var chgdp = function() {
-	doSend("|D"+$("#regdir").val()+"R\r")
+	doSend("|D"+$("#regdir").val()+"\r")
 }
 var chgdb = function() {
-	doSend("|B"+$("#regdb").val()+"R\r")
+	doSend("|B"+$("#regdb").val()+"\r")
 }
 var chgpc = function() {
 	var pc = $("#regpc").val()
-	doSend("|P"+pc.substr(0,2)+":"+pc.substr(2)+"R\r")
+	doSend("|P"+pc.substr(0,2)+":"+pc.substr(2)+"\r")
 }
 
 var chgf = function() {
-	doSend("|F"+$("#regf").val()+"R\r")
+	doSend("|F"+$("#regf").val()+"\r")
 	updateFlags()
 }
 
