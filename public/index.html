@@ -135,7 +135,7 @@
 
 		</div>
 		<div class="row">
-	   		<button onclick="updateregs()" class="btn">Update values</button>
+	   		<button onclick="updateregs()" class="btn col-md-5 offset-md-1">Update values</button>
 	   		<hr>
 	   	</div>
 
@@ -156,7 +156,7 @@
 
 	   	<h2>Upload</h2>
 	   	<div class="row">
-	   		<input type="file" id="files" name="files[]" multiple />
+	   		<input type="file" id="files" name="files[]" multiple class="col-md-11 ">
 
 	   	</div>
       </div>  
@@ -363,7 +363,7 @@ var wsUri = "ws://localhost:6502/";
 
   function doSend(message)
   {
-    writeToScreen("SENT: " + message);
+    //writeToScreen("-->" + message);
     websocket.send(message);
   }
 
