@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="list.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<style>body { 
+    padding-top: 65px; 
+}</style>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">EZ65C265</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <select class="form-control mr-sm-2" id="ports">
+          	
+          </select>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="connect" onclick="doconn()">Connect</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container">
+     <div class="row">
+      <div class="col-md-4 bg-faded invisible" id="side-panel"><!--panel-->
+      <div class="row">
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">A</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="rega" onchange="chga()" maxlength=4>
+		</div>
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">SP</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="regsp" onchange="chgsp()" maxlength=4>
+		</div>		
+	  </div>
+
+      <div class="row">
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">X</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="regx" onchange="chgx()" maxlength=4>
+		</div>
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">Y</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="regy" onchange="chgy()" maxlength=4>
+		</div>
+	   </div>
+
+      <div class="row">
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">PC</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="regpc" onchange="chgpc()" maxlength=6>
+		</div>
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">DP</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="regdir" onchange="chgdp()" maxlength=4>
+		</div>
+	   </div>
+
+      <div class="row">
+
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">F</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="regf" onchange="chgf()" maxlength=2>
+		</div>
+        <div class="input-group col-md-6">
+		  <span class="input-group-addon">DB</span>
+		  <input type="text" class="form-control" aria-describedby="basic-addon1" id="regdb" onchange="chgdb()" maxlength=2>
+		</div>
+	   </div>
+	   <div class="row form-group">
+	   <label>Flags</label>
+	   
+	   <div class="input-group col-md-11 ">
+	   	<div class="form-check form-check-inline">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagn" onchange="chgFlags()"> N
+		  </label>
+		</div>
+		<div class="form-check form-check-inline">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagv" onchange="chgFlags()"> V
+		  </label>
+		</div>
+		<div class="form-check form-check-inline disabled">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagm" onchange="chgFlags()"> M
+		  </label>
+		</div>
+		<div class="form-check form-check-inline disabled">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagx" onchange="chgFlags()"> X
+		  </label>
+		</div>
+	   	<div class="form-check form-check-inline">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagd" onchange="chgFlags()"> D
+		  </label>
+		</div>
+		<div class="form-check form-check-inline">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagi" onchange="chgFlags()"> I
+		  </label>
+		</div>
+		<div class="form-check form-check-inline disabled">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagz" onchange="chgFlags()"> Z
+		  </label>
+		</div>
+		<div class="form-check form-check-inline disabled">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="checkbox" id="flagc" onchange="chgFlags()"> C
+		  </label>
+		</div>
+		</div>
+
+
+		</div>
+		<div class="row">
+	   		<button onclick="updateregs()" class="btn">Update</button>
+	   	</div>
+      </div>  
+
+      <div class="col">
+        <h1>EZ65C265 Control Panel</h1>
+        <p class="lead">Connect your 65xxcel8r and select proper port (reload if not shown)</p>
+        <button onclick="sety()">Set Y</button>
+        <textarea id="rawlog" class="form-control" rows="30" cols="40"></textarea>
+        <p id="output"></p>
+
+      </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+
+
+ 
+
+
+
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+<script type="text/javascript">
+
+var connected = false;
+
+for(i in portList) {
+	var port = portList[i];
+	$("#ports").append('<option value="'+port.id+'">'+port.id)
+}
+
+var doconn = function(e) {
+	//e.preventDefault()
+	if (!connected) {
+		var comport = $("#ports").val();
+		$.get("conn/"+comport, null, function(cb) {
+			connected = true;
+			$("#connect").text("Disconnect")
+			$("#side-panel").removeClass("invisible")
+			wsinit()
+		})
+	} else {
+		connected = false;
+		$("#connect").text("Connect")
+	}
+}
+
+var sety = function() {
+	console.log("SETY")
+	doSend("|Y0123R\r")
+}
+
+var chga = function() {
+	doSend("|A"+$("#rega").val()+"R\r")
+}
+var chgx = function() {
+	doSend("|X"+$("#regx").val()+"R\r")
+}
+var chgy = function() {
+	doSend("|Y"+$("#regy").val()+"R\r")
+}
+var chgsp = function() {
+	doSend("|S"+$("#regsp").val()+"R\r")
+}
+var chgdp = function() {
+	doSend("|D"+$("#regdir").val()+"R\r")
+}
+var chgdb = function() {
+	doSend("|B"+$("#regdb").val()+"R\r")
+}
+var chgpc = function() {
+	var pc = $("#regpc").val()
+	doSend("|P"+pc.substr(0,2)+":"+pc.substr(2)+"R\r")
+}
+
+var chgf = function() {
+	doSend("|F"+$("#regf").val()+"R\r")
+	updateFlags()
+}
+
+
+var updateregs = function() {
+	doSendAndRead("| \r", function(n){
+		var parsed = n.match(/.\| +(.{6}) (.{4}) (.{4}) (.{4}) (.{4}) (.{4}) (.{2}) (.{2})/);
+		//console.log(n,parsed)
+		$("#regpc").val(parsed[1])
+		$("#rega").val(parsed[2])
+		$("#regx").val(parsed[3])
+		$("#regy").val(parsed[4])
+		$("#regsp").val(parsed[5])
+		$("#regdir").val(parsed[6])
+		$("#regf").val(parsed[7])
+		$("#regdb").val(parsed[8])
+		updateFlags()
+	})
+}
+
+var updateFlags= function() {
+	var val = parseInt($("#regf").val(),16)
+	$("#flagn").prop("checked",val & 0x80)
+	$("#flagv").prop("checked",val & 0x40)
+	$("#flagm").prop("checked",val & 0x20)
+	$("#flagx").prop("checked",val & 0x10)
+	$("#flagd").prop("checked",val & 0x08)
+	$("#flagi").prop("checked",val & 0x04)
+	$("#flagz").prop("checked",val & 0x02)
+	$("#flagc").prop("checked",val & 0x01)
+}
+
+var chgFlags = function() {
+	var flags = $("#flagc").prop("checked")?0x01:0
+	flags    += $("#flagz").prop("checked")?0x02:0
+	flags    += $("#flagi").prop("checked")?0x04:0
+	flags    += $("#flagd").prop("checked")?0x08:0
+	flags    += $("#flagx").prop("checked")?0x10:0
+	flags    += $("#flagm").prop("checked")?0x20:0
+	flags    += $("#flagv").prop("checked")?0x40:0
+	flags    += $("#flagn").prop("checked")?0x80:0
+	var flg = flags.toString(16);
+	if (flg.length==1) flg="0"+flg
+	$("#regf").val(flg.toUpperCase())
+	chgf()
+}
+
+var backlog = "";
+var loglength = 20000;
+
+var rawlog = function(text) {
+	$("#rawlog").append(text);
+
+	if ($("#rawlog").text().length>loglength) {
+		var t = $("#rawlog").text();
+		var ct = t.substr(t.length-loglength+1000,loglength-1000);
+		var pct = ct.indexOf("\n");
+		t = ct.substr(pct+1);
+		$("#rawlog").text(t);
+	}
+}
+
+var read = null
+
+var doSendAndRead = function(send,result) {
+	var res = "";
+	read = function(txt) {
+		//console.log(res)
+		if (txt=="READY") {read=null;result(res);return;}
+		res+=txt+"\n"
+	}
+	doSend(send);
+}
+
+var wsUri = "ws://localhost:6502/";
+  var output;
+
+  function wsinit()
+  {
+    output = document.getElementById("output");
+    testWebSocket();
+  }
+
+  function testWebSocket()
+  {
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpen(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+  }
+
+  function onOpen(evt)
+  {
+    writeToScreen("CONNECTED");
+    updateregs()
+    //doSend("h\r");
+  }
+
+  function onClose(evt)
+  {
+    writeToScreen("DISCONNECTED");
+  }
+
+  function onMessage(evt)
+  {
+    rawlog( evt.data+"\n");
+    if (read) read(evt.data);
+    //websocket.close();
+  }
+
+  function onError(evt)
+  {
+    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+  }
+
+  function doSend(message)
+  {
+    writeToScreen("SENT: " + message);
+    websocket.send(message);
+  }
+
+  function writeToScreen(message)
+  {
+    rawlog(message+"\n")
+  }
+
+ // window.addEventListener("load", init, false);
+
+
+</script>
+
+
