@@ -9,8 +9,8 @@ SerialPort.list(function (err, ports) {
   ports.forEach(function(port) {
   	if (port.vendorId!='0403' && port.vendorId!='0x0403') return
   	if (port.productId!='6001' && port.productId!='0x6001') return
-    console.log(port.comName);
-    console.log(port.manufacturer);
+    //console.log(port.comName);
+    //console.log(port.manufacturer);
     portList.push({id:port.comName})
   });
 });
@@ -57,8 +57,9 @@ app.get('/conn/:port', function (req, res) {
   	console.log("Connected")
   	res.send("Connected"); return;
   }
-  console.log("Try to connect",req.params.port)
-  openPort(req.params.port)
+  var port = decodeURIComponent(req.params.port);
+  console.log("Try to connect",port)
+  openPort(port)
   res.send("Connecting")
 })
 
