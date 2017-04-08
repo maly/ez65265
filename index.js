@@ -5,7 +5,7 @@ var SerialPort = require('serialport');
 var portList = [];
 
 SerialPort.list(function (err, ports) {
-  console.log(err,ports)
+  //console.log(err,ports)
   ports.forEach(function(port) {
   	if (port.vendorId!='0403' && port.vendorId!='0x0403') return
   	if (port.productId!='6001' && port.productId!='0x6001') return
