@@ -197,7 +197,7 @@ for(i in portList) {
 var doconn = function(e) {
 	//e.preventDefault()
 	if (!connected) {
-		var comport = $("#ports").val();
+		var comport = encodeURIComponent($("#ports").val());
 		$.get("conn/"+comport, null, function(cb) {
 			connected = true;
 			$("#connect").text("Disconnect")
